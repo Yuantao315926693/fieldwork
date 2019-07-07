@@ -5,9 +5,18 @@ import org.springframework.stereotype.Service;
 
 public class Login_guest {
 
+
+    private String id;
     private String username;
     private String passward;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     public String getUsername() {
         return username;
     }
@@ -23,12 +32,13 @@ public class Login_guest {
     public void setPassward(String passward) {
         this.passward = passward;
     }
-
     @Override
     public String toString() {
         return "Login_guest{" +
-                "username='" + username + '\'' +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
                 ", passward='" + passward + '\'' +
                 '}';
     }
+
 }

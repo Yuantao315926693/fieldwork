@@ -37,6 +37,41 @@ function register(){
 	}
     form2.submit();
 }
+function ValueChange(value,index){
+	// alert($(value).attr("id"));
+	// alert($(value).val());
+	//alert(typeof ($(value).val()));
+	if($(value).val()==""){
+        alert('不能为空！');
+        return false;
+	}
+	// alert($(value).val());
+    $.ajax({
+        type: "POST",
+        url:"/userRegister/verifty",
+		data: "index="+index.toString()+"&"+$(value).attr("id")+"="+$(value).val(),
+    	dataType:"json",
+		// data: $("#form_user").serialize(),
+        success: function(msg){
+        	// alert(msg);
+        	// alert(typeof (msg));
+            // $.messager.progress("close");
+            // if(msg.state){
+            //     $.messager.alert('提示',msg.msg,'info');
+            // } else {
+            //     $.messager.alert('提示',msg.msg,'error');
+            // }
+            // $('#win_user_add').window('close');
+            // $("#grid_user").datagrid('reload');
+			if(msg){
+                alert("该"+$(value).attr("id")+":"+$(value).val()+" 已经存在");
+				$(value).val(function(i,origText) {
+                    return origText + " 已经存在";
+                })
+			}
+        }
+    })
+}
 // window.onload = function(){
 // 	var i3 = document.getElementsByClassName('input_3');
 // 	for(var i=0;i<i3.length;i++){

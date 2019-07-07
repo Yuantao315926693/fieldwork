@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" >
+<!--导入thymeleaf名称空间提示-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="UTF-8">
@@ -8,7 +9,7 @@
 <!--图标样式-->
 <link rel="shortcut icon" type="image/x-icon" href="../选择页面/assets/images/favicon.ico">
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" th:href="@{../css/style.css}">
 
 
 </head>
@@ -21,16 +22,19 @@
 		<form id="form_res" action="/userRegister/submit" method="post">
 		  <h1>注册</h1>
 		  <p>&nbsp;</p>
-		  <input id="name" type="text" name="name" placeholder="名称" />
-			<input id="username" type="text" name="username" placeholder="电话" />
+            <input id="name" type="text"  onchange="ValueChange(this,0)"  name="name" placeholder="名称" />
+			<input id="username" type="text"  onchange="ValueChange(this,1)" name="username" placeholder="电话" />
 			<input id="password" type="password" name="password" placeholder="密码" />
 			<button onclick="register()">注册</button>
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
-		<form id="form_login" action="/userLogin/submit" method="post">
+		<form id="form_login" action="/userLogin/submit" method="post" th:switch="${#strings.isEmpty(msg)}">
 		  <h1>登录</h1>
-		  <p>&nbsp;</p>
+		  <p style="color: red" th:case="false" th:text="${msg}"></p>
+		  <p style="color: green" th:case="true" >&nbsp;</p>
+            <!--判断条件-->
+            <!--<p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>-->
 		  <input id="username" type="text" name="username" placeholder="电话" />
 			<input id="password" type="password" name="password" placeholder="密码" />
 			<a href="#">忘记密码？</a>
@@ -59,8 +63,8 @@
   
   
 
-<script  src="js/index.js"></script>
-
+<script  type="text/javascript" th:src="@{../js/index.js}"> </script>
+<script  type="text/javascript" th:src="@{../js/jquery.min.js}"> </script>
 
 
 

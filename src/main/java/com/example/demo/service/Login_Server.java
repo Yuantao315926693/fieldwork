@@ -18,6 +18,20 @@ public class Login_Server {
           return loginMapper.Existguest(username, passward)!=null;
       }
 
+      public Boolean Vertify_guest(String col,String Value) {
+          System.out.println(col+Value);
+          if (col == "name") {
+              System.out.println(loginMapper.Vertify_guestname(Value));
+              return loginMapper.Vertify_guestname(Value) != null;
+          } else if (col == "username") {
+              return loginMapper.Vertify_guestusername(Value) != null;
+          }
+          return false;
+      }
+//          System.out.println(loginMapper.Vertify_guest(col, Value));
+//          return loginMapper.Vertify_guest(col, Value)!=null;
+//      }
+
       public boolean Exist_Username(String name,String username){
           return loginMapper.Exist_username(name,username) == null;
       }

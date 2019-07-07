@@ -10,8 +10,14 @@ import org.springframework.stereotype.Repository;
 @Mapper
 
 public interface LoginMapper {
-    @Select("Select * From guest WHERE username = #{arg0} and passward=#{arg1}")
+    @Select("Select * From guest WHERE username = #{arg0} and password=#{arg1}")
     Login_guest Existguest(String username,String passward);
+
+    @Select("Select * From guest WHERE name = #{arg1}")
+    Login_guest Vertify_guestname(String Value);
+
+    @Select("Select * From guest WHERE username = #{arg1}")
+    Login_guest Vertify_guestusername(String Value);
 
     @Select("Select * From guest WHERE name = #{arg0} and username = #{arg1}")
     Login_guest Exist_username(String name,String username);
